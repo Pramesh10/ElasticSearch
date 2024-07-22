@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\PrameshKumarKC\\source\\repos\\Pramesh10\\ElasticSearch\\ElasticSearch.Domain\\ElasticSearch.Domain.csproj": {}
+    "C:\\Users\\PrameshKumarKC\\Source\\Repos\\Pramesh10\\ElasticSearch\\ElasticSearch.Domain\\ElasticSearch.Domain.csproj": {}
   },
   "projects": {
-    "C:\\Users\\PrameshKumarKC\\source\\repos\\Pramesh10\\ElasticSearch\\ElasticSearch.Domain\\ElasticSearch.Domain.csproj": {
+    "C:\\Users\\PrameshKumarKC\\Source\\Repos\\Pramesh10\\ElasticSearch\\ElasticSearch.Domain\\ElasticSearch.Domain.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\PrameshKumarKC\\source\\repos\\Pramesh10\\ElasticSearch\\ElasticSearch.Domain\\ElasticSearch.Domain.csproj",
+        "projectUniqueName": "C:\\Users\\PrameshKumarKC\\Source\\Repos\\Pramesh10\\ElasticSearch\\ElasticSearch.Domain\\ElasticSearch.Domain.csproj",
         "projectName": "ElasticSearch.Domain",
-        "projectPath": "C:\\Users\\PrameshKumarKC\\source\\repos\\Pramesh10\\ElasticSearch\\ElasticSearch.Domain\\ElasticSearch.Domain.csproj",
+        "projectPath": "C:\\Users\\PrameshKumarKC\\Source\\Repos\\Pramesh10\\ElasticSearch\\ElasticSearch.Domain\\ElasticSearch.Domain.csproj",
         "packagesPath": "C:\\Users\\PrameshKumarKC\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\PrameshKumarKC\\source\\repos\\Pramesh10\\ElasticSearch\\ElasticSearch.Domain\\obj\\",
+        "outputPath": "C:\\Users\\PrameshKumarKC\\Source\\Repos\\Pramesh10\\ElasticSearch\\ElasticSearch.Domain\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages",
