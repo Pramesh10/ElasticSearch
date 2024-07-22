@@ -3,9 +3,11 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.9.34607.119
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ElasticSearch", "ElasticSearch.csproj", "{3B83811B-6C2E-4F14-BDB2-70342D7A3D35}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ElasticSearch", "ElasticSearch.csproj", "{3B83811B-6C2E-4F14-BDB2-70342D7A3D35}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ElasticSearch.Domain", "..\ElasticSearch.Domain\ElasticSearch.Domain.csproj", "{DE462B45-6A15-4433-A59A-B9682F502711}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ElasticSearch.Domain", "..\ElasticSearch.Domain\ElasticSearch.Domain.csproj", "{DE462B45-6A15-4433-A59A-B9682F502711}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ElasticSearch.DataAccess", "..\ElasticSearch.DataAccess\ElasticSearch.DataAccess.csproj", "{3305355F-CA68-4EC9-8EE2-A166C1A0F332}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -21,6 +23,10 @@ Global
 		{DE462B45-6A15-4433-A59A-B9682F502711}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{DE462B45-6A15-4433-A59A-B9682F502711}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{DE462B45-6A15-4433-A59A-B9682F502711}.Release|Any CPU.Build.0 = Release|Any CPU
+		{3305355F-CA68-4EC9-8EE2-A166C1A0F332}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3305355F-CA68-4EC9-8EE2-A166C1A0F332}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3305355F-CA68-4EC9-8EE2-A166C1A0F332}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{3305355F-CA68-4EC9-8EE2-A166C1A0F332}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
