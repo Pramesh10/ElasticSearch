@@ -17,5 +17,8 @@ namespace ElasticSearch.Domain.Entities
         public DateTime CreatedDate { get; set; }
         public DateTime LastModified { get; set; }
         public string CreatedBy{ get; set; }
+        public string FileExtension { get; set; }
+        public string MimeType { get; set; }
+    
     }
 }
