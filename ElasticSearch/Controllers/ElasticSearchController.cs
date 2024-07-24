@@ -58,6 +58,7 @@ namespace ElasticSearch.Controllers
                     FilePath = docDetails.FilePath,
                     FileExtension = docDetails.FileExtension,
                     MimeType = docDetails.MimeType,
+                    FileType = docDetails.FileType,
                     CreatedBy = docDetails.CreatedBy,
                     CreatedDate = docDetails.CreatedDate
                 };
