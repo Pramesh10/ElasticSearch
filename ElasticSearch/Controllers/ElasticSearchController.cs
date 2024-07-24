@@ -67,5 +67,14 @@ namespace ElasticSearch.Controllers
             }
             return Ok(fileList);
         }
+
+
+        [HttpGet("GetAllDocumentsDetails")]
+        public async Task<IActionResult> GetAllDocumentsDetailsCompanyA()
+        {
+
+            var docDetails = await _appDbContext.DocumentDetails.ToListAsync();
+            return Ok(docDetails);
+        }
     }
 }
