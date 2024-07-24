@@ -54,7 +54,7 @@ namespace ElasticSearch.Controllers
 
                     ContentExtraction ce = new ContentExtraction();
                     await ce.ConvertToContent(file);
-                    
+                    Console.WriteLine("hellotest");
                     return Ok(file);
                 }
                 else
