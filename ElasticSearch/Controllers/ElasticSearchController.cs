@@ -22,8 +22,7 @@ namespace ElasticSearch.Controllers
         [HttpGet("GetAllDocumentsDetails")]
         public async Task<IActionResult> GetAllDocumentsDetails()
         {
-            //ContentExtraction ce = new ContentExtraction();
-            //ce.tstFunction();
+            
             var docDetails = await _appDbContext.DocumentDetails.ToListAsync();
             return Ok(docDetails);
         }
@@ -33,15 +32,15 @@ namespace ElasticSearch.Controllers
         public async Task<IActionResult> SearchWithContent([FromQuery] string searchTerm)
         {
            
-           var settings = new Nest.ConnectionSettings(new Uri("http://localhost:9200/")).DefaultIndex("testdemo");
+           var settings = new Nest.ConnectionSettings(new Uri("http://localhost:9200/")).DefaultIndex("contentsearch");
 
            var elasticClient = new Nest.ElasticClient(settings);
 
             var searchResponse = elasticClient.Search<ESDocumentDetails>(s => s
                             .Query(q => q
-                             .Match(m => m // Match query
-                               .Field(f => f.Content) // Specify the field containing file content
-                                  .Query(searchTerm) // Replace with your search keywords
+                             .Match(m => m 
+                               .Field(f => f.Content) 
+                                  .Query(searchTerm) 
                                          )
                              )
                 );

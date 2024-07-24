@@ -1,5 +1,4 @@
 ﻿using ElasticSearch.Domain.Entities;
-using ElasticSearch.Domain.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -8,11 +7,8 @@ using System.Threading.Tasks;
 
 namespace ElasticSearch.Application.Abstraction
 {
-    public interface ISaveFilesDetails
+    public interface IDocuments
     {
-        Task<DocumentDetail> SaveFilesDetailsToDb(FileRecord filetoCreate);
-
-        Task<string > FilePath(string path);
-
+        Task<DocumentDetail> GetDocumentByID(Guid documentId);
     }
 }

@@ -22,6 +22,12 @@ namespace ElasticSearch.DataAccess.Repositories
         {
             _appDbContext = appDbContext;
         }
+
+        public Task<string> FilePath(string path)
+        {
+            throw new NotImplementedException();
+        }
+
         public async Task<DocumentDetail> SaveFilesDetailsToDb(FileRecord filetoCreate)
         {
             DocumentDetail fileData = new DocumentDetail

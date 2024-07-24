@@ -11,7 +11,7 @@ namespace ElasticSearch.Services
         public void UploadContentToES(string content , string filename)
         {
 
-            var settings = new Nest.ConnectionSettings(new Uri("http://localhost:9200/")).DefaultIndex("testdemo");
+            var settings = new Nest.ConnectionSettings(new Uri("http://localhost:9200/")).DefaultIndex("contentsearch");
 
             var elasticClient = new Nest.ElasticClient(settings);
 

@@ -11,6 +11,8 @@ using NPOI.SS.UserModel;
 using NPOI.XSSF.UserModel;
 using NPOI.SS.Formula.Functions;
 using ClosedXML.Excel;
+using DocumentFormat.OpenXml.Packaging;
+using DocumentFormat.OpenXml.Wordprocessing;
 
 namespace ElasticSearch.Services
 {
@@ -113,6 +115,10 @@ namespace ElasticSearch.Services
                     content = ExtractTextFromExcel(fileRecord.FilePath);
                     eSsync.UploadContentToES(content, fileRecord.FileName);
                     break;
+                case ".docx":
+                    content = ExtractTextFromWord(fileRecord.FilePath);
+                    eSsync.UploadContentToES(content, fileRecord.FileName);
+                    break;
                 default:
                     Console.WriteLine("No match found");
                     break;
@@ -162,46 +168,37 @@ namespace ElasticSearch.Services
 
         }
 
-
-        static async Task<string> ExtractTextAndIndexToElasticsearch(string filePath)
+        static string ExtractTextFromWord(string filePath)
         {
-            using (var workbook = new XLWorkbook(filePath))
+            try
             {
-                var rowCount = workbook.Worksheet(1).LastRowUsed().RowNumber();
-                var columnCount = workbook.Worksheet(1).LastColumnUsed().ColumnNumber();
-
-                List<Dictionary<string, object>> data = new List<Dictionary<string, object>>();
-
-                for (int row = 1; row <= rowCount; row++)
+                using (WordprocessingDocument doc = WordprocessingDocument.Open(filePath, false))
                 {
-                    var rowData = new Dictionary<string, object>();
-                    for (int column = 1; column <= columnCount; column++)
+                    // Extract text using Body element
+                    StringBuilder textBuilder = new StringBuilder();
+                    var body = doc.MainDocumentPart.Document.Body;
+
+                    foreach (var paragraph in body.Elements<Paragraph>())
                     {
-                        rowData.Add($"Column{column}", workbook.Worksheets.Worksheet(1).Cell(row, column).GetString());
+                        foreach (var run in paragraph.Elements<Run>())
+                        {
+                            textBuilder.Append(run.InnerText);
+                        }
+                        // Add newline character between paragraphs (optional)
+                        textBuilder.AppendLine();
                     }
-                    data.Add(rowData);
-                }
 
-                var settings = new Nest.ConnectionSettings(new Uri("http://localhost:9200/")).DefaultIndex("testdemo");
-
-                var elasticClient = new Nest.ElasticClient(settings);
-
-                var bulkResponse = await elasticClient.BulkAsync(b => b
-                    .IndexMany(data)
-                );
-
-                if (!bulkResponse.IsValid)
-                {
-                    Console.WriteLine("Indexing failed: " + bulkResponse.ServerError);
-                    return null;
-                }
-                else
-                {
-                    Console.WriteLine("Successfully indexed {0} rows to Elasticsearch", data.Count);
-                    return "Data indexed successfully";
+                    return textBuilder.ToString();
                 }
             }
+            catch (Exception ex)
+            {
+                Console.WriteLine("Error extracting text: " + ex.Message);
+                return "";
+            }
         }
+
+
     }
 }
 

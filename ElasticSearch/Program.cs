@@ -26,6 +26,8 @@ builder.Services.AddDbContext<AppDbContext>(options =>
 builder.Services.AddScoped<IFileCreateDirectory, FileCreateDirectory>();
 builder.Services.AddScoped<ISaveFilesDetails, SaveFilesDetails>();
 
+builder.Services.AddScoped<IDocuments, DocumentRepository>();
+
 
 
 

@@ -1,9 +1,12 @@
-﻿using ElasticSearch.Application.Abstraction;
+﻿using DocumentFormat.OpenXml.Office2010.Word;
+using ElasticSearch.Application.Abstraction;
 using ElasticSearch.DataAccess.AppDbContexts;
+using ElasticSearch.DataAccess.Repositories;
 using ElasticSearch.Domain.Models;
 using ElasticSearch.Services;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using System.IO;
 using System.Net;
 
@@ -16,16 +19,21 @@ namespace ElasticSearch.Controllers
         
         private readonly IFileCreateDirectory _fileCreateDirectory;
         private readonly ISaveFilesDetails _saveFileDetails;
-    
+        private readonly IDocuments _documentsRepo;
+        private AppDbContext _appDbContext;
 
 
-        public FilesController(IFileCreateDirectory fileCreateDirectory,ISaveFilesDetails saveFilesDetails
-            )
+        private readonly string AppDirectory = Path.Combine(Directory.GetCurrentDirectory(), "TestFiles");
+
+
+        public FilesController(IFileCreateDirectory fileCreateDirectory, ISaveFilesDetails saveFilesDetails, IDocuments documents
+, AppDbContext appDbContext)
         {
-           
+
             _fileCreateDirectory = fileCreateDirectory;
             _saveFileDetails = saveFilesDetails;
-          
+            _documentsRepo = documents;
+            _appDbContext = appDbContext;
         }
 
         [HttpPost("upload")]
@@ -58,6 +66,30 @@ namespace ElasticSearch.Controllers
             {
                 return BadRequest();
             }
+        }
+
+
+        [HttpGet("{id}")]
+        
+        public async Task<IActionResult> DownloadFile(Guid id)
+        {
+
+            
+
+            var doc = await _appDbContext.DocumentDetails.FirstOrDefaultAsync(doc => doc.Id == id);
+
+            var path = Path.Combine(AppDirectory, doc?.FilePath);
+
+            var memory = new MemoryStream();
+            using (var stream = new FileStream(path, FileMode.Open))
+            {
+                await stream.CopyToAsync(memory);
+            }
+            memory.Position = 0;
+            var contentType = "APPLICATION/octet-stream";
+            var fileName = Path.GetFileName(path);
+
+            return File(memory, contentType, fileName);
         }
     }
 }

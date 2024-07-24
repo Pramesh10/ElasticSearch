@@ -11,5 +11,7 @@ namespace ElasticSearch.Application.Abstraction
     public interface IFileCreateDirectory
     {
         Task<FileRecord> SaveFileToDir(IFormFile myFile);
+
+        
     }
 }
