@@ -89,6 +89,8 @@ namespace ElasticSearch.Controllers
             var contentType = "APPLICATION/octet-stream";
             var fileName = Path.GetFileName(path);
 
+            await Console.Out.WriteLineAsync("hello");
+
             return File(memory, contentType, fileName);
         }
 
@@ -114,6 +116,30 @@ namespace ElasticSearch.Controllers
 
             return File(memory, contentType, fileName);
         }
+
+        [HttpGet("{id}")]
+
+        public async Task<IActionResult> DownloadFilessss(Guid id)
+        {
+
+
+
+            var doc = await _appDbContext.DocumentDetails.FirstOrDefaultAsync(doc => doc.Id == id);
+
+            var path = Path.Combine(AppDirectory, doc?.FilePath);
+
+            var memory = new MemoryStream();
+            using (var stream = new FileStream(path, FileMode.Open))
+            {
+                await stream.CopyToAsync(memory);
+            }
+            memory.Position = 0;
+            var contentType = "APPLICATION/octet-stream";
+            var fileName = Path.GetFileName(path);
+
+            return File(memory, contentType, fileName);
+        }
+
 
         [HttpGet("{id}")]
 
